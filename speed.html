@@ -16,7 +16,7 @@ let output = document.getElementById('output')
 let count = document.getElementById('count')
 let countVal = 0
 
-    // Function to calculate speed between two points
+// Function to calculate speed between two points in km/h rounded to 3 decimal points
 function calculateSpeed(lat1, lon1, time1, lat2, lon2, time2) {
     // Convert latitude and longitude from degrees to radians
     var R = 6371; // Radius of the earth in km
@@ -28,16 +28,18 @@ function calculateSpeed(lat1, lon1, time1, lat2, lon2, time2) {
         Math.sin(dLon/2) * Math.sin(dLon/2)
         ; 
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    var distance = R * c * 1000; // Distance in meters
-    var timeDiff = time2 - time1; // Time difference in milliseconds
-    var speed = distance / timeDiff * 1000; // Speed in meters per second
-    return speed;
+    var distance = R * c; // Distance in kilometers
+    var timeDiff = (time2 - time1) / 1000; // Time difference in seconds
+    var speedMps = distance / timeDiff; // Speed in meters per second
+    var speedKmph = speedMps * 3.6; // Convert speed to km/h
+    return speedKmph.toFixed(3); // Round speed to 3 decimal points
 }
 
-// Function to handle the success of geolocation
+
+// Function to handle the success of geolocation.
 function success(position) {
     if (position.coords.speed !== null) {
-        output.innerText = "Current speed: " + position.coords.speed + " meters per second";
+        output.innerText = "Current speed: " + position.coords.speed + " km/h";
         // Number of time this function ran. Times Position changed.
         countVal += 1;
         count.innerText = `POS Change: ${countVal}`;
