@@ -1,3 +1,8 @@
+// MDN LINKS:
+// Connection Property: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/connection
+// Network Information: https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation
+// Change Event: https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation/change_event
+
 let div = document.getElementById('info')
 let h2 = document.getElementById('on-off-line')
 
